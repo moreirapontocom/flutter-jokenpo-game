@@ -27,6 +27,17 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void restartGame() {
+    _pontosUsuario = 0;
+    _pontosApp = 0;
+    _mensagemAtual = _opcoesMensagem[0];
+
+    setState(() {
+      _imagemApp = AssetImage("images/padrao.png");
+      this._mensagemPontuacao = "(você) $_pontosUsuario x $_pontosApp (app)";
+    });
+  }
+
   void selecionarOpcao(String opcaoJogador) {
     print("Usuário selecionou: $opcaoJogador");
 
@@ -130,6 +141,12 @@ class _HomeState extends State<Home> {
                 )
               ],
             ),
+            GestureDetector(
+              onTap: () {
+                this.restartGame();
+              },
+              child: Text("Reiniciar jogo"),
+            )
           ],
         ),
       ),
